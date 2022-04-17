@@ -1,0 +1,12 @@
+
+<%= month_calendar events: @events do |date, events| %>
+  <%= date.day %>
+   <% events.each do |event| %>
+    <div>
+      <%= event.title %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to 'Add an game', new_event_path %>
+
