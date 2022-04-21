@@ -5,7 +5,7 @@ class CreateProfiles < ActiveRecord::Migration[6.1]
       t.string :level
       t.string :spirit
       t.string :favourite_locations, array: true
-      t.references :user_id, null: false, foreign_key: true
+      t.belongs_to :user
       t.timestamps
     end
   end

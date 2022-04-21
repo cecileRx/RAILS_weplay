@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_21_131002) do
+ActiveRecord::Schema.define(version: 2022_04_21_164236) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2022_04_21_131002) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "end_time"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -26,10 +28,10 @@ ActiveRecord::Schema.define(version: 2022_04_21_131002) do
     t.string "level"
     t.string "spirit"
     t.string "favourite_locations"
-    t.integer "user_id_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id_id"], name: "index_profiles_on_user_id_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,13 +42,9 @@ ActiveRecord::Schema.define(version: 2022_04_21_131002) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "about"
-    t.string "level"
-    t.string "spirit"
-    t.text "favourite_locations"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "profiles", "user_ids"
+  add_foreign_key "events", "users"
 end

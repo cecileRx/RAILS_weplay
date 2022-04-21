@@ -5,13 +5,14 @@
       <%= event.title %>
       <%= event.start_time.strftime("%H:%M") %>
       <%= event.end_time.strftime("%H:%M") %>
+      <%= event.user.email %>
     </div>
   <% end %>
 <% end %>
 
 <%= link_to 'Add a game', new_event_path %>
 
-<%= timeslot_calendar(events: @events,
+<% timeslot_calendar(events: @events,
                       layout: :vertical,
                       number_of_days: 4,
                       px_per_minute: 2.3,
